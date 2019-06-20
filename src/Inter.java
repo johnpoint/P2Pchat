@@ -1,5 +1,3 @@
-package ITF;
-
 public class Inter {
 
 	public static void main(String[] args) {
