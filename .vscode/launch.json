@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ClientTest",
+            "request": "launch",
+            "mainClass": "ClientTest",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Server",
+            "request": "launch",
+            "mainClass": "Server",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Server$GreetingServer",
+            "request": "launch",
+            "mainClass": "Server$GreetingServer",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Test",
             "request": "launch",
             "mainClass": "Test"
