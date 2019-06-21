@@ -10,7 +10,7 @@ public class Client {
         this.peerClientAddr = peerClientAddr;
     }
 
-    public int sendMessage(String text) {
+    public int sendMessage(String text) throws IOException {
         if (this.peerClientAddr == "0.0.0.0") {
             return 1;
         }
