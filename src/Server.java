@@ -1,15 +1,15 @@
 import java.net.*;
 import java.io.*;
 
-public class Server extends Thread {
+public class Server  {
     private ServerSocket serverSocket;
 
-    public Server(int port) throws IOException {
-        serverSocket = new ServerSocket(port);
+    public Server() throws IOException {
+        serverSocket = new ServerSocket(5118);
         serverSocket.setSoTimeout(10000);
     }
 
-    public String runn() {
+    public String run() {
         try {
             Socket server = serverSocket.accept();
             DataInputStream in = new DataInputStream(server.getInputStream());
@@ -19,11 +19,10 @@ public class Server extends Thread {
             server.close();
             return text;
         } catch (SocketTimeoutException s) {
-            System.out.println("Socket timed out!");
-            return "error";
+            return "asjhdfgaiuwyfgfhvbiyuatefrubavwe";
         } catch (IOException e) {
             e.printStackTrace();
-            return "error";
+            return "asjhdfgaiuwyfgfhvbiyuatefrubavwe";
         }
     }
 

@@ -1,104 +1,97 @@
-import java.awt.BorderLayout;
+import java.awt.TextArea;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketAddress;
-import java.util.Map;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-public class Inter extends Thread implements ActionListener{
-     //ΩÁ√Ê√˚
-	 private JFrame frame=new JFrame("P2P¡ƒÃÏ");
-	 //¡ƒÃÏ–≈œ¢
-	 private JTextArea info=new JTextArea(15,30);
-	 //‘⁄œﬂ”√ªß
-     private JTextField msgText=new JTextField(30);
-	 //∞¥≈•
-	 private JButton sendButton=new JButton("∑¢ÀÕ");
-	 
-	 //private DatagramSocket inter;
-	 
-	 
-	 public Inter(){
-	 
-	  // this.inter=inter;
-      //ΩÁ√Ê
-	  frame.setSize(600, 400);
+public class Inter extends JFrame {
 
-	  JScrollBar scroll=new JScrollBar();
+	private TextField tf = new TextField();
+	private TextArea ta = new TextArea();
 
-	  //º§ªÓ◊‘∂Øªª––π¶ƒ‹ 
-	  info.setLineWrap(true);
-	  info.setWrapStyleWord(true);
-	  info.setEditable(false);
-	  scroll.add(info);
-	   
-	  JPanel infopanel=new JPanel();
-	  infopanel.add(info,BorderLayout.WEST);
-	  JPanel infopanel1=new JPanel();
-
-	  infopanel.add(infopanel1,BorderLayout.EAST);
-	 
-	  JPanel panel=new JPanel();
-	  
-	 // msgText=new JTextField(30);
-	 
-	  panel.add(msgText);
-	  panel.add(sendButton);
-	  frame.add(infopanel,BorderLayout.NORTH);
-	  frame.add(panel,BorderLayout.SOUTH);
-	  frame.setVisible(true);
-	  
-	  sendButton.addActionListener(this);
-	  
-	  frame.addWindowListener(new   WindowAdapter(){ 
-	            public   void   windowClosing(WindowEvent   e){ 
-	                System.exit(0);
-	            } 
-	         }); 
-	  
-	 
-	 }
-	 
-	 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) throws IOException {
 		new Inter();
-		
-		
-	}
-	//∞¥º˛œµÕ≥
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-	//	if(e.getSource()==this.sendButton)
-	//	  {
-	//	   try{
-	//	    String msg=this.msgText.getText();
-	//	    if(msg.length()>0)
-	//	    {
-	//	     this.info.append("Œ“Àµ£∫"+msg);
-	//	     this.info.append("\n");
-	//	     for (Map.Entry<String, SocketAddress> entry : userMap.entrySet()) {
-	//	      DatagramPacket data=new DatagramPacket(msg.getBytes(),msg.getBytes().length,entry.getValue());
-	//.send(data);
-	//	     }
-		     
-	//	     this.msgText.setText("");
-	//	    }
-	//	   }
-	//	   catch(Exception ee){}
-	//  }
 	}
 
+	public Inter() throws IOException {
+		this.setLayout(null);
+		this.setTitle("P2P Chat");
+		this.setLocation(0, 0);
+		this.setSize(825, 500);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tf = new TextField();
+		ta = new TextArea();
+
+		// ‰∏∫TextFieldÊ∑ªÂä†ÂõûËΩ¶‰∫ã‰ª∂ÂìçÂ∫î
+		tf.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				String content = tf.getText();
+				if (content != "") {
+					/*
+					 * Âà§Êñ≠TextArea‰∏≠ÊòØÂê¶ÊúâÂÜÖÂÆπ,Â¶ÇÊûúÊúâÔºåÂàôÈúÄË¶ÅÂÖàÂä†ÂÖ•‰∏Ä‰∏™Êç¢Ë°åÁ¨¶Ôºå ÁÑ∂ÂêéÂÜçÂä†ÂÖ•ÂÜÖÂÆπÔºåÂê¶ÂàôÁõ¥Êé•Âä†ÂÖ•ÂÜÖÂÆπ
+					 */
+					if (ta.getText().trim().length() != 0) {
+						ta.setText(ta.getText() + "\n" + "you > " + content);
+						Client d = null;
+						try {
+							FileInputStream fileIn = new FileInputStream("./peerInfo");
+							ObjectInputStream in = new ObjectInputStream(fileIn);
+							d = (Client) in.readObject();
+							in.close();
+							fileIn.close();
+						} catch (IOException i) {
+							i.printStackTrace();
+							return;
+						} catch (ClassNotFoundException c) {
+							c.printStackTrace();
+							return;
+						}
+						try {
+							d.sendMessage(content);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					} else {
+						ta.setText("me > " + content);
+					}
+
+					tf.setText("");
+				}
+
+			}
+		});
+		ta.setBounds(10, 10, 800, 400);
+		ta.setEnabled(false);
+		tf.setBounds(10, 410, 800, 50);
+
+		this.add(tf);
+		this.add(ta);
+		// pack();// Á™óÂè£Ëá™Âä®ÈÄÇÂ∫îÂ§ßÂ∞èÔºå‰ΩøÁ™óÂè£ËÉΩÊ≠£Â•ΩÊòæÁ§∫ÈáåÈù¢ÊâÄÊúâÁöÑÊéß‰ª∂„ÄÇ
+		this.setVisible(true);
+
+		while (true) {
+			Server getmsg = new Server();
+			String getMsg;
+			getMsg = getmsg.run();
+			if (getMsg != "asjhdfgaiuwyfgfhvbiyuatefrubavwe") {
+				if (ta.getText().trim().length() != 0) {
+					ta.setText(ta.getText() + "\n" + " > " + getMsg);
+				} else {
+					ta.setText(" > " + getMsg);
+				}
+			}
+		}
+
+	}
 }
