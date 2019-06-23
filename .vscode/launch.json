@@ -2,6 +2,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - main",
+            "request": "launch",
+            "mainClass": "main",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SetipWindows",
+            "request": "launch",
+            "mainClass": "SetipWindows",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Face",
+            "request": "launch",
+            "mainClass": "Face",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ChatClient",
+            "request": "launch",
+            "mainClass": "ChatClient",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Inter",
+            "request": "launch",
+            "mainClass": "Inter",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - ClientTest",
             "request": "launch",
             "mainClass": "ClientTest",

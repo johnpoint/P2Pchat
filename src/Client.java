@@ -1,9 +1,9 @@
 import java.net.*;
 import java.io.*;
 
-public class Client {
+public class Client implements java.io.Serializable {
 
-    private String peerClientAddr = "0.0.0.0";
+    private String peerClientAddr = "8.8.8.8";
     final private int peerClientPort = 5118;
 
     public Client(String peerClientAddr) {
@@ -11,7 +11,7 @@ public class Client {
     }
 
     public int sendMessage(String text) throws IOException {
-        if (this.peerClientAddr == "0.0.0.0") {
+        if (this.peerClientAddr == "8.8.8.8") {
             return 1;
         }
         Socket client = new Socket(this.peerClientAddr, peerClientPort);
