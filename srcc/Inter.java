@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import javax.swing.JFrame;
 
 public class Inter extends JFrame {
+
 	private TextField tf = new TextField();
 	private TextArea ta = new TextArea();
 
@@ -65,21 +66,23 @@ public class Inter extends JFrame {
 			}
 		});
 		ta.setBounds(10, 10, 800, 400);
-		//ta.setEnabled(false);
+		ta.setEnabled(false);
 		tf.setBounds(10, 410, 800, 50);
 
 		this.add(tf);
 		this.add(ta);
 		// pack();// 窗口自动适应大小，使窗口能正好显示里面所有的控件。
 		this.setVisible(true);
-		Server getmsg = new Server();
+
 		while (true) {
-			System.out.println("1");
-			if (getmsg.waitMessage != "") {
+			Server getmsg = new Server();
+			String getMsg;
+			getMsg = getmsg.run();
+			if (getMsg != "asjhdfgaiuwyfgfhvbiyuatefrubavwe") {
 				if (ta.getText().trim().length() != 0) {
-					ta.setText(ta.getText() + "\n" + " > " + getmsg.getMessage());
-				}else{
-					ta.setText(getmsg.getMessage());
+					ta.setText(ta.getText() + "\n" + " > " + getMsg);
+				} else {
+					ta.setText(" > " + getMsg);
 				}
 			}
 		}
