@@ -1,3 +1,0 @@
-rm *.class
-javac Client.java Inter.java Server.java SetipWindows.java
-java SetipWindows

@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - SetipWindows",
+            "request": "launch",
+            "mainClass": "SetipWindows"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - ServerTest",
             "request": "launch",
             "mainClass": "ServerTest"

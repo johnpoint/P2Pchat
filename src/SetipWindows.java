@@ -39,13 +39,13 @@ public class SetipWindows extends JFrame implements ActionListener {
             out.close();
             fileOut.close();
             this.dispose();
-            Inter windows=new Inter();
         } catch (IOException i) {
             i.printStackTrace();
         }
     }
 
-    public static void main(String[] args) {
-        SetipWindows test = new SetipWindows();
+    public static void main(String[] args) throws IOException {
+        new SetipWindows();
+        new Inter();
     }
 }
