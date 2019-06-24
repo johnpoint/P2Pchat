@@ -4,7 +4,7 @@ import java.io.*;
 public class Client implements java.io.Serializable {
 
     private String peerClientAddr = "8.8.8.8";
-    final private int peerClientPort = 5111;
+    final private int peerClientPort = 5118;
 
     public Client(String peerClientAddr) {
         this.peerClientAddr = peerClientAddr;

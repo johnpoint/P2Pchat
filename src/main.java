@@ -1,12 +1,9 @@
-public class main extends Thread {
-    private Thread t;
+import java.io.IOException;
 
-    public void run() {
-        Server get = new Server();
-    }
-    public static void main(String[] args) {
-        Server getmsg = new Server();
-        getmsg.start();
-        SetipWindows go = new SetipWindows();
+public class main {
+
+    public static void main(String[] args) throws IOException {
+        new SetipWindows();
+        new Inter();
     }
 }
