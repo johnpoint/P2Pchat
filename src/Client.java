@@ -6,23 +6,27 @@ public class Client implements java.io.Serializable {
     private String peerClientAddr = "8.8.8.8";
     final private int peerClientPort = 5118;
 
+
     public Client(String peerClientAddr) {
         this.peerClientAddr = peerClientAddr;
     }
 
-    public int sendMessage(String text) throws IOException {
+    public void sendMessage(String text) throws IOException {
+        Socket client;
+        OutputStream outToServer;
+        DataOutputStream out;
         if (this.peerClientAddr == "8.8.8.8") {
-            return 1;
+            return;
         }
-        Socket client = new Socket(this.peerClientAddr, peerClientPort);
-        OutputStream outToServer = client.getOutputStream();
-        DataOutputStream out = new DataOutputStream(outToServer);
+        if (this.peerClientAddr == "8.8.8.8") {
+            return;
+        }
+        client = new Socket(this.peerClientAddr, peerClientPort);
+        outToServer = client.getOutputStream();
+        out = new DataOutputStream(outToServer);
         out.writeUTF(text);
-        InputStream inFromServer = client.getInputStream();
-        DataInputStream in = new DataInputStream(inFromServer);
-        System.out.println(in.readUTF());
         client.close();
-        return 0;
+        return;
     }
 
     public void debug() {
