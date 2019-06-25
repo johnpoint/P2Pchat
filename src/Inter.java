@@ -15,6 +15,9 @@ import java.net.SocketTimeoutException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class Inter extends JFrame implements ActionListener {
 	private TextField tf = new TextField();
@@ -24,17 +27,32 @@ public class Inter extends JFrame implements ActionListener {
 	private JLabel peeripaddr = new JLabel("对方 IP: ");
 	private ServerSocket serverSocket;
 	public Client d;
+	private JMenuBar menuBar = new JMenuBar();
 
 	public static void main(String[] args) throws IOException {
 		new Inter();
 	}
 
 	public Inter() throws IOException {
+		this.setJMenuBar(menuBar);
+		JMenu menu1 = new JMenu("关于");
+		JMenuItem item1 = new JMenuItem("help");
+		JMenuItem item2 = new JMenuItem("LICENSE");
+		item1.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+
+		});
+		menu1.add(item1);
+		menu1.add(item2);
+		menuBar.add(menu1);
 		this.setLayout(null);
 		this.setTitle("P2P Chat");
 		this.setLocation(0, 0);
-		this.setSize(825, 600);
+		this.setSize(825, 620);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		tf = new TextField();
@@ -51,13 +69,13 @@ public class Inter extends JFrame implements ActionListener {
 					d = (Client) in.readObject();
 					in.close();
 					fileIn.close();
-					//d.sendMessage("Client Hello");
+					// d.sendMessage("Client Hello");
 				} catch (IOException i) {
 					i.printStackTrace();
-					//return;
+					// return;
 				} catch (ClassNotFoundException c) {
 					c.printStackTrace();
-					//return;
+					// return;
 				}
 				String content = tf.getText();
 				if (content != "") {
@@ -97,7 +115,7 @@ public class Inter extends JFrame implements ActionListener {
 				} catch (IOException i) {
 					i.printStackTrace();
 				}
-				peeripaddr.setText("对方 IP: "+ipaddr.getText());
+				peeripaddr.setText("对方 IP: " + ipaddr.getText());
 				ipaddr.setText("");
 				ta.setText("");
 			}
