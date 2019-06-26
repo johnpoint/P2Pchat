@@ -15,8 +15,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants.Clinit;
-
 public class Inter extends JFrame implements ActionListener {
 	public TextField tf = new TextField();
 	public TextField ipaddr = new TextField();
