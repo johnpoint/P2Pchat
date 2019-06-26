@@ -2,16 +2,12 @@ import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketTimeoutException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,17 +16,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 public class Inter extends JFrame implements ActionListener {
-	private TextField tf = new TextField();
-	private TextField ipaddr = new TextField();
-	private TextArea ta = new TextArea();
-	private JButton setipButton = new JButton();
-	private JLabel peeripaddr = new JLabel("对方 IP: ");
-	private ServerSocket serverSocket;
+	public TextField tf = new TextField();
+	public TextField ipaddr = new TextField();
+	public TextArea ta = new TextArea();
+	public JButton setipButton = new JButton();
+	public JLabel peeripaddr = new JLabel("对方 IP: ");
 	public Client d;
-	private JMenuBar menuBar = new JMenuBar();
+	public JMenuBar menuBar = new JMenuBar();
+	public static Inter frm;
 
 	public static void main(String[] args) throws IOException {
-		new Inter();
+		frm = new Inter();
+		Serverr server = new Serverr(frm);
+		server.start();
 	}
 
 	public Inter() throws IOException {
@@ -57,7 +55,7 @@ public class Inter extends JFrame implements ActionListener {
 		this.setResizable(false);
 		tf = new TextField();
 		ta = new TextArea();
-		serverSocket = new ServerSocket(5118);
+		ServerSocket serverSocket = new ServerSocket(5118);
 		serverSocket.setSoTimeout(1000000);
 		tf.addActionListener(new ActionListener() {
 			@Override
@@ -120,6 +118,7 @@ public class Inter extends JFrame implements ActionListener {
 				ta.setText("");
 			}
 		});
+
 		setipButton.setBounds(720, 55, 85, 50);
 		setipButton.setText("link");
 		peeripaddr.setBounds(10, 10, 800, 50);
@@ -129,19 +128,7 @@ public class Inter extends JFrame implements ActionListener {
 		this.add(ipaddr);
 		this.add(peeripaddr);
 		this.setVisible(true);
-		while (true) {
-			try {
-				Socket server = serverSocket.accept();
-				DataInputStream in = new DataInputStream(server.getInputStream());
-				ta.setText(ta.getText() + "\n" + " > " + in.readUTF());
-				server.close();
-			} catch (SocketTimeoutException s) {
-				ta.setText(ta.getText() + "\n" + "## 链接丢失");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 
-		}
 	}
 
 	@Override
