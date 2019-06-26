@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - GreetingClient",
+            "request": "launch",
+            "mainClass": "GreetingClient",
+            "projectName": "P2Pchat"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - main",
             "request": "launch",
             "mainClass": "main",
