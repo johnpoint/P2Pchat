@@ -18,11 +18,9 @@ import javax.swing.JMenuItem;
 public class Inter extends JFrame implements ActionListener {
 	public TextField tf = new TextField();
 	public TextField ipaddr = new TextField();
-	//public TextField setport = new TextField();
 	public TextArea ta = new TextArea();
 	public JButton setipButton = new JButton();
 	public JLabel peeripaddr = new JLabel("对方 IP: ");
-	//public JLabel perport = new JLabel("端口: ");
 
 	public Client d;
 	public JMenuBar menuBar = new JMenuBar();
@@ -65,25 +63,7 @@ public class Inter extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent event) {
 				
 				String content = tf.getText();
-				Client d = null;
-				try {
-					FileInputStream fileIn = new FileInputStream("./peerInfo");
-					ObjectInputStream in = new ObjectInputStream(fileIn);
-					d = (Client) in.readObject();
-					in.close();
-					fileIn.close();
-					// d.sendMessage("Client Hello");
-				} catch (IOException i) {
-					i.printStackTrace();
-					// return;
-				} catch (ClassNotFoundException c) {
-					c.printStackTrace();
-					// return;
-				}
 				if (content != "") {
-					/*
-					 * 判断TextArea中是否有内容,如果有，则需要先加入一个换行符， 然后再加入内容，否则直接加入内容
-					 */
 					if (ta.getText().trim().length() != 0) {
 						ta.setText(ta.getText() + "\n" + "you > " + content);
 
@@ -116,26 +96,17 @@ public class Inter extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Client peer = new Client(ipaddr.getText());
-				try {
-					FileOutputStream fileOut = new FileOutputStream("./peerInfo");
-					ObjectOutputStream out = new ObjectOutputStream(fileOut);
-					out.writeObject(peer);
-					out.close();
-					fileOut.close();
-				} catch (IOException i) {
-					i.printStackTrace();
-				}
+				d = peer;
 				peeripaddr.setText("对方 IP: " + ipaddr.getText());
-				ipaddr.setText("");
 				ta.setText("");
+				ipaddr.setEnabled(false);
+				ta.setText("已经准备就绪");
 			}
 		});
 
 		setipButton.setBounds(720, 10, 85, 50);
 		setipButton.setText("link");
 		peeripaddr.setBounds(10, 10, 800, 50);
-		//this.add(perport);
-		//this.add(setport);
 		this.add(tf);
 		this.add(ta);
 		this.add(setipButton);
