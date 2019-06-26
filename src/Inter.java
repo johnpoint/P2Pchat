@@ -18,9 +18,12 @@ import javax.swing.JMenuItem;
 public class Inter extends JFrame implements ActionListener {
 	public TextField tf = new TextField();
 	public TextField ipaddr = new TextField();
+	//public TextField setport = new TextField();
 	public TextArea ta = new TextArea();
 	public JButton setipButton = new JButton();
 	public JLabel peeripaddr = new JLabel("对方 IP: ");
+	//public JLabel perport = new JLabel("端口: ");
+
 	public Client d;
 	public JMenuBar menuBar = new JMenuBar();
 	public static Inter frm;
@@ -50,7 +53,7 @@ public class Inter extends JFrame implements ActionListener {
 		this.setLayout(null);
 		this.setTitle("P2P Chat");
 		this.setLocation(0, 0);
-		this.setSize(825, 620);
+		this.setSize(825, 575);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		tf = new TextField();
@@ -92,14 +95,17 @@ public class Inter extends JFrame implements ActionListener {
 					} else {
 						ta.setText("you > " + content);
 					}
+					
 
 					tf.setText("");
 				}
 			}
 		});
-		ta.setBounds(10, 110, 800, 400);
-		tf.setBounds(10, 510, 800, 50);
-		ipaddr.setBounds(10, 55, 700, 50);
+		ta.setBounds(10, 65, 800, 400);
+		tf.setBounds(10, 465, 800, 50);
+		ipaddr.setBounds(60, 10, 700, 50);
+		//perport.setBounds(530, 10,50, 50);
+		//setport.setBounds(560, 10, 150, 50);
 		setipButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -119,9 +125,11 @@ public class Inter extends JFrame implements ActionListener {
 			}
 		});
 
-		setipButton.setBounds(720, 55, 85, 50);
+		setipButton.setBounds(720, 10, 85, 50);
 		setipButton.setText("link");
 		peeripaddr.setBounds(10, 10, 800, 50);
+		//this.add(perport);
+		//this.add(setport);
 		this.add(tf);
 		this.add(ta);
 		this.add(setipButton);
