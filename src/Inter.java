@@ -15,6 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import com.sun.org.apache.bcel.internal.generic.InstructionConstants.Clinit;
+
 public class Inter extends JFrame implements ActionListener {
 	public TextField tf = new TextField();
 	public TextField ipaddr = new TextField();
@@ -63,6 +65,8 @@ public class Inter extends JFrame implements ActionListener {
 		tf.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
+				
+				String content = tf.getText();
 				Client d = null;
 				try {
 					FileInputStream fileIn = new FileInputStream("./peerInfo");
@@ -78,7 +82,6 @@ public class Inter extends JFrame implements ActionListener {
 					c.printStackTrace();
 					// return;
 				}
-				String content = tf.getText();
 				if (content != "") {
 					/*
 					 * 判断TextArea中是否有内容,如果有，则需要先加入一个换行符， 然后再加入内容，否则直接加入内容
@@ -93,6 +96,11 @@ public class Inter extends JFrame implements ActionListener {
 						}
 
 					} else {
+						try {
+							d.sendMessage(content);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 						ta.setText("you > " + content);
 					}
 					
