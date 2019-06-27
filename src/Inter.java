@@ -35,14 +35,15 @@ public class Inter extends JFrame implements ActionListener {
 		JMenuItem item2 = new JMenuItem("LICENSE");
 		item2.addActionListener(new ActionListener() {
 			JLabel text = new JLabel();
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				JFrame a = new JFrame();
 				text.setText("GNU GENERAL PUBLIC LICENSE");
-				text.setBounds(100,20,500,200);
+				text.setBounds(100, 20, 500, 200);
 				a.add(text);
-				a.setBounds(0,0,500,200);
+				a.setBounds(0, 0, 500, 200);
 				a.setVisible(true);
 			}
 
@@ -58,6 +59,7 @@ public class Inter extends JFrame implements ActionListener {
 		this.setResizable(false);
 		tf = new TextField();
 		ta = new TextArea();
+		ta.setEditable(false);
 		ServerSocket serverSocket = new ServerSocket(5118);
 		serverSocket.setSoTimeout(1000000);
 		tf.addActionListener(new ActionListener() {
@@ -65,14 +67,14 @@ public class Inter extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent event) {
 
 				String content = tf.getText();
-				Client d = new Client(ipaddr.getText(),frm);
+				Client d = new Client(ipaddr.getText(), frm);
 				d.setText(content);
-				
+
 				if (ta.getText().trim().length() != 0) {
-					ta.setText(ta.getText() + "\n" + "you > " + content);
+					ta.setText(ta.getText() + "\n" + "you:" + "\n" + " > " + content);
 					d.start();
 					tf.setText("");
-				}else{
+				} else {
 					ta.setText(content);
 					tf.setText("");
 				}
