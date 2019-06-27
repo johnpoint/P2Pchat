@@ -68,31 +68,12 @@ public class Inter extends JFrame implements ActionListener {
 				Client d = new Client(ipaddr.getText(),frm);
 				d.setText(content);
 				
-
-
 				if (ta.getText().trim().length() != 0) {
 					ta.setText(ta.getText() + "\n" + "you > " + content);
 					d.start();
-					/*try {
-						if (d.sendMessage(content) == 1) {
-							ta.setText(ta.getText() + "\n" + "发送失败");
-						}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-
 					tf.setText("");
 				}else{
 					ta.setText(content);
-					/*try {
-						if (d.sendMessage(content) == 1) {
-							ta.setText(ta.getText() + "\n" + "发送失败");
-						}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
 					tf.setText("");
 				}
 			}
@@ -100,13 +81,9 @@ public class Inter extends JFrame implements ActionListener {
 		ta.setBounds(10, 65, 800, 400);
 		tf.setBounds(10, 465, 800, 50);
 		ipaddr.setBounds(60, 10, 700, 50);
-		// perport.setBounds(530, 10,50, 50);
-		// setport.setBounds(560, 10, 150, 50);
 		setipButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Client peer = new Client(ipaddr.getText());
-				//d = peer;
 				peeripaddr.setText("对方 IP: " + ipaddr.getText());
 				ta.setText("");
 				ipaddr.setEnabled(false);

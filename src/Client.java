@@ -14,25 +14,6 @@ public class Client extends Thread {
         this.chat = chat;
     }
 
-    /*public int sendMessage(String text) throws IOException {
-        Socket client;
-        OutputStream outToServer;
-        DataOutputStream out;
-        if (this.peerClientAddr == "8.8.8.8") {
-            return 1;
-        }
-        try {
-            client = new Socket(this.peerClientAddr, peerClientPort);
-            outToServer = client.getOutputStream();
-            out = new DataOutputStream(outToServer);
-            out.writeUTF(text);
-            client.close();
-            return 0;
-        } catch (IOException e) {
-            return 1;
-        }
-    }*/
-
     public void setText(String Text) {
         this.Text = Text;
     }
@@ -50,6 +31,7 @@ public class Client extends Thread {
             out = new DataOutputStream(outToServer);
             out.writeUTF(this.Text);
             client.close();
+            System.out.println("senddddd");
             return;
         } catch (IOException e) {
             return;
