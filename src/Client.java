@@ -31,7 +31,6 @@ public class Client extends Thread {
             out = new DataOutputStream(outToServer);
             out.writeUTF(this.Text);
             client.close();
-            System.out.println("senddddd");
             return;
         } catch (IOException e) {
             return;
