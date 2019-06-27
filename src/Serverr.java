@@ -15,7 +15,7 @@ public class Serverr extends Thread {
 
     public Serverr(Inter chat) throws IOException {
         this.chat = chat;
-        serverSocket = new ServerSocket(5117);
+        serverSocket = new ServerSocket(5110);
         serverSocket.setSoTimeout(10000);
     }
 
