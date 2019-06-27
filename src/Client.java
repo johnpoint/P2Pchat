@@ -14,7 +14,7 @@ public class Client extends Thread {
         this.chat = chat;
     }
 
-    public int sendMessage(String text) throws IOException {
+    /*public int sendMessage(String text) throws IOException {
         Socket client;
         OutputStream outToServer;
         DataOutputStream out;
@@ -31,7 +31,7 @@ public class Client extends Thread {
         } catch (IOException e) {
             return 1;
         }
-    }
+    }*/
 
     public void setText(String Text) {
         this.Text = Text;
