@@ -20,10 +20,8 @@ public class Serverr extends Thread {
     }
 
     public void run() {
-        int i = 0;
         while (true) {
             try {
-                System.out.println(i);
                 Socket sserver = serverSocket.accept();
                 DataInputStream in = new DataInputStream(sserver.getInputStream());
                 chat.ta.setText(chat.ta.getText() + "\n" + " > " + in.readUTF());
@@ -31,7 +29,6 @@ public class Serverr extends Thread {
             } catch (SocketTimeoutException s) {
             } catch (IOException f) {
             }
-            i++;
         }
 
     }
