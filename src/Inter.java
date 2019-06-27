@@ -33,11 +33,17 @@ public class Inter extends JFrame implements ActionListener {
 		JMenu menu1 = new JMenu("关于");
 		JMenuItem item1 = new JMenuItem("help");
 		JMenuItem item2 = new JMenuItem("LICENSE");
-		item1.addActionListener(new ActionListener() {
-
+		item2.addActionListener(new ActionListener() {
+			JLabel text = new JLabel();
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
+				JFrame a = new JFrame();
+				text.setText("GNU GENERAL PUBLIC LICENSE");
+				text.setBounds(100,20,500,200);
+				a.add(text);
+				a.setBounds(0,0,500,200);
+				a.setVisible(true);
 			}
 
 		});
