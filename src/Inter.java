@@ -57,28 +57,32 @@ public class Inter extends JFrame implements ActionListener {
 		tf.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				
+
 				String content = tf.getText();
-				if (content != "") {
-					if (ta.getText().trim().length() != 0) {
-						ta.setText(ta.getText() + "\n" + "you > " + content);
 
-						try {
-							d.sendMessage(content);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
+				if (ta.getText().trim().length() != 0) {
+					ta.setText(ta.getText() + "\n" + "you > " + content);
 
-					} else {
-						try {
-							d.sendMessage(content);
-						} catch (IOException e) {
-							e.printStackTrace();
+					try {
+						if (d.sendMessage(content) == 1) {
+							ta.setText(ta.getText() + "\n" + "发送失败");
 						}
-						ta.setText("you > " + content);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-					
 
+					tf.setText("");
+				}else{
+					ta.setText(content);
+					try {
+						if (d.sendMessage(content) == 1) {
+							ta.setText(ta.getText() + "\n" + "发送失败");
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					tf.setText("");
 				}
 			}
@@ -86,8 +90,8 @@ public class Inter extends JFrame implements ActionListener {
 		ta.setBounds(10, 65, 800, 400);
 		tf.setBounds(10, 465, 800, 50);
 		ipaddr.setBounds(60, 10, 700, 50);
-		//perport.setBounds(530, 10,50, 50);
-		//setport.setBounds(560, 10, 150, 50);
+		// perport.setBounds(530, 10,50, 50);
+		// setport.setBounds(560, 10, 150, 50);
 		setipButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
