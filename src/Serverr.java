@@ -24,7 +24,7 @@ public class Serverr extends Thread {
             try {
                 Socket sserver = serverSocket.accept();
                 DataInputStream in = new DataInputStream(sserver.getInputStream());
-                chat.ta.setText(chat.ta.getText() + "\n" + " > " + in.readUTF());
+                chat.ta.setText(chat.ta.getText() + "\n" + chat.ipaddr.getText() + "\n" + " > " + in.readUTF());
                 sserver.close();
             } catch (SocketTimeoutException s) {
             } catch (IOException f) {

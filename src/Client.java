@@ -23,6 +23,7 @@ public class Client extends Thread {
         OutputStream outToServer;
         DataOutputStream out;
         if (this.peerClientAddr == "8.8.8.8") {
+            chat.ta.setText(chat.ta.getText() + "\n" + "发送失败，可能对方不在线");
             return;
         }
         try {
@@ -33,6 +34,7 @@ public class Client extends Thread {
             client.close();
             return;
         } catch (IOException e) {
+            chat.ta.setText(chat.ta.getText() + "\n" + "发送失败，可能对方不在线");
             return;
         }
     }
