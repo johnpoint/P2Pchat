@@ -18,9 +18,6 @@ public class Client implements java.io.Serializable {
         if (this.peerClientAddr == "8.8.8.8") {
             return 0;
         }
-        if (this.peerClientAddr == "8.8.8.8") {
-            return 0;
-        }
         client = new Socket(this.peerClientAddr, peerClientPort);
         outToServer = client.getOutputStream();
         out = new DataOutputStream(outToServer);
