@@ -6,7 +6,6 @@ public class Client implements java.io.Serializable {
     private String peerClientAddr = "8.8.8.8";
     final private int peerClientPort = 5117;
 
-
     public Client(String peerClientAddr) {
         this.peerClientAddr = peerClientAddr;
     }
@@ -16,14 +15,18 @@ public class Client implements java.io.Serializable {
         OutputStream outToServer;
         DataOutputStream out;
         if (this.peerClientAddr == "8.8.8.8") {
-            return 0;
+            return 1;
         }
-        client = new Socket(this.peerClientAddr, peerClientPort);
-        outToServer = client.getOutputStream();
-        out = new DataOutputStream(outToServer);
-        out.writeUTF(text);
-        client.close();
-        return 1;
+        try {
+            client = new Socket(this.peerClientAddr, peerClientPort);
+            outToServer = client.getOutputStream();
+            out = new DataOutputStream(outToServer);
+            out.writeUTF(text);
+            client.close();
+            return 0;
+        } catch (IOException e) {
+            return 1;
+        }
     }
 
     public void debug() {
