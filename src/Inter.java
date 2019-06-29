@@ -24,7 +24,7 @@ public class Inter extends JFrame implements ActionListener {
 
 	public static void main(String[] args) throws IOException {
 		frm = new Inter();
-		Serverr server = new Serverr(frm);
+		Server server = new Server(frm);
 		server.start();
 	}
 

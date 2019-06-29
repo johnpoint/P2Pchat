@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-public class Serverr extends Thread {
+public class Server extends Thread {
     private Thread t;
     Inter chat;
 
@@ -13,7 +13,7 @@ public class Serverr extends Thread {
     DataOutputStream out;
     private ServerSocket serverSocket;
 
-    public Serverr(Inter chat) throws IOException {
+    public Server(Inter chat) throws IOException {
         this.chat = chat;
         serverSocket = new ServerSocket(5117);
         serverSocket.setSoTimeout(10000);
