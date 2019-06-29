@@ -15,7 +15,7 @@ public class Serverr extends Thread {
 
     public Serverr(Inter chat) throws IOException {
         this.chat = chat;
-        serverSocket = new ServerSocket(5110);
+        serverSocket = new ServerSocket(5117);
         serverSocket.setSoTimeout(10000);
     }
 
@@ -24,7 +24,7 @@ public class Serverr extends Thread {
             try {
                 Socket sserver = serverSocket.accept();
                 DataInputStream in = new DataInputStream(sserver.getInputStream());
-                chat.ta.setText(chat.ta.getText() + "\n" + chat.ipaddr.getText() + "\n" + " > " + in.readUTF());
+                chat.ta.setText(chat.ta.getText() + "\n" + chat.ipaddr.getText() + ":\n" + in.readUTF());
                 sserver.close();
             } catch (SocketTimeoutException s) {
             } catch (IOException f) {

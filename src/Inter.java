@@ -71,7 +71,7 @@ public class Inter extends JFrame implements ActionListener {
 				d.setText(content);
 
 				if (ta.getText().trim().length() != 0) {
-					ta.setText(ta.getText() + "\n" + "you:" + "\n" + " > " + content);
+					ta.setText(ta.getText() + "\n" + "you:" + "\n" + content);
 					d.start();
 					tf.setText("");
 				} else {
