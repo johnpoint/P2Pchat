@@ -7,7 +7,7 @@ public class Client extends Thread {
     public String Text;
 
     private String peerClientAddr = "8.8.8.8";
-    final private int peerClientPort = 5115;
+    final private int peerClientPort = 5117;
 
     public Client(String peerClientAddr, Inter chat) {
         this.peerClientAddr = peerClientAddr;
